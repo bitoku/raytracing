@@ -6,7 +6,6 @@
 #define VEC3_H
 #include <iostream>
 #include <cmath>
-#include <opencl-c.h>
 
 class Vec3 {
 public:

@@ -3,4 +3,4 @@ project(raytracing)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(raytracing main.cpp vec3.h vec3_test.cpp)
+add_executable(raytracing vec3.h vec3_test.cpp)
