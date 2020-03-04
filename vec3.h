@@ -63,11 +63,11 @@ Vec3 operator-(double k, const Vec3& v) {
 }
 
 Vec3 operator*(const Vec3& v, double k) {
-    return {v.x * k, v.y - k, v.z - k};
+    return {v.x * k, v.y * k, v.z * k};
 }
 
 Vec3 operator*(double k, const Vec3& v) {
-    return {v.x * k, v.y - k, v.z - k};
+    return {v.x * k, v.y * k, v.z * k};
 }
 
 Vec3 operator/(const Vec3& v, double k) {
