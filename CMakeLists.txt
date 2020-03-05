@@ -3,4 +3,4 @@ project(raytracing)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(raytracing vec3.h ray.h util.h image.h hit.h sphere.h camera.h single_sphere_tracing.cpp)
+add_executable(raytracing vec3.h ray.h util.h image.h hit.h sphere.h camera.h aggregate.h aggregate_test.cpp)
