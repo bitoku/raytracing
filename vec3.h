@@ -79,7 +79,7 @@ Vec3 operator/(double k, const Vec3& v) {
 }
 
 double dot(const Vec3& v1, const Vec3& v2) {
-    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.y;
+    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
 
 Vec3 cross(const Vec3& v1, const Vec3& v2) {
