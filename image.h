@@ -30,6 +30,10 @@ public:
         data[i + width*j] = c;
     }
 
+    void addPixel(int i, int j, const Vec3& c) {
+        data[i + width*j] = data[i + width*j] + c;
+    }
+
     void divide(double k) {
         for (int i = 0; i < width; i++) {
             for (int j = 0;j < height; j++) {
