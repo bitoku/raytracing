@@ -7,6 +7,7 @@
 
 #include <utility>
 #include <vector>
+#include <memory>
 #include "sphere.h"
 
 class Aggregate {

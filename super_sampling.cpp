@@ -3,6 +3,7 @@
 //
 
 #include <random>
+#include <omp.h>
 #include "image.h"
 #include "camera.h"
 #include "aggregate.h"
@@ -22,6 +23,7 @@ int main() {
 
     Vec3 sunDir = normalize(Vec3(1, 1, 1));
 
+    #pragma omp parallel for schedule(dynamic, 1)
     for (int k = 0; k < N; k++) {
         for (int i = 0; i < img.width; i++) {
             for (int j = 0; j < img.height; j++) {
