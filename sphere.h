@@ -6,15 +6,23 @@
 #define RAYTRACING_SPHERE_H
 
 
+#include <utility>
+
 #include "vec3.h"
 #include "ray.h"
 #include "hit.h"
+#include "material.h"
+#include "light.h"
 
 class Sphere {
 public:
     Vec3 center;
     double radius;
-    Sphere(const Vec3& _center, double _radius) : center(_center), radius(_radius) {}
+    std::shared_ptr<Material> material;
+    std::shared_ptr<Light> light;
+
+    Sphere(const Vec3& _center, double _radius, std::shared_ptr<Material>  _material) :
+    center(_center), radius(_radius), material(std::move(_material)) {}
 
     bool intersect(const Ray& ray, Hit& res) const {
         double b = dot(ray.direction, ray.origin - center);
