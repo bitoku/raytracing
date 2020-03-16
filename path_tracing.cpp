@@ -12,20 +12,26 @@
 #include "radiance.h"
 
 int main() {
-    const int N = 100;
+    const int N = 1000             ;
 
     Image img(512, 512);
-    PinholeCamera cam(Vec3(0, 0, -0.5), Vec3(0, 0, -1), 1);
+    PinholeCamera cam(Vec3(0, 0, 4), Vec3(0, 0, -1), 1);
 
-    auto mat1 = std::make_shared<Mirror>();
-    auto mat2 = std::make_shared<Diffuse>(Vec3(0.2, 0.2, 0.8));
+    auto mat1 = std::make_shared<Diffuse>(Vec3(0.8));
+    auto mat2 = std::make_shared<Diffuse>(Vec3(0.8, 0.2, 0.2));
+    auto mat3 = std::make_shared<Diffuse>(Vec3(0.2, 0.8, 0.2));
 
     auto light1 = std::make_shared<Light>(Vec3(0));
-    auto light2 = std::make_shared<Light>(Vec3(0.2, 0.2, 0.8));
+    auto light2 = std::make_shared<Light>(Vec3(10));
 
     Aggregate aggregate;
     aggregate.add(std::make_shared<Sphere>(Vec3(0, -10001, 0), 10000, mat1, light1));
-    aggregate.add(std::make_shared<Sphere>(Vec3(0, 0, -3), 1, mat2, light2));
+    aggregate.add(std::make_shared<Sphere>(Vec3(10003, 0, 0), 10000, mat2, light1));
+    aggregate.add(std::make_shared<Sphere>(Vec3(-10003, 0, 0), 10000, mat3, light1));
+    aggregate.add(std::make_shared<Sphere>(Vec3(0, 10003, 0), 10000, mat1, light1));
+    aggregate.add(std::make_shared<Sphere>(Vec3(0, 0, -10003), 10000, mat1, light1));
+    aggregate.add(std::make_shared<Sphere>(Vec3(0, 0, 0), 1, mat1, light1));
+    aggregate.add(std::make_shared<Sphere>(Vec3(0, 3, 0), 1, mat1, light2));
 
     #pragma omp parallel for default(none) shared(img, aggregate, cam, std::cout) schedule(dynamic, 1)
     for (int i = 0; i < img.width; i++) {
