@@ -14,7 +14,7 @@ public:
     double z;
 
     Vec3() { x = y = z = 0; };
-    explicit Vec3(double _x) { x = y = z = _x; }
+    explicit Vec3(double _x) : x(_x), y(_x), z(_x) {}
     Vec3(double _x, double _y, double _z) : x(_x), y(_y), z(_z) {}
 
     // the length of vector
@@ -58,6 +58,13 @@ public:
         z /= v.z;
         return *this;
     }
+
+    Vec3& operator/=(double k) {
+        x /= k;
+        y /= k;
+        z /= k;
+        return *this;
+    }
 };
 
 // operation with vector and vector
@@ -70,7 +77,7 @@ Vec3 operator-(const Vec3& v1, const Vec3& v2) {
 }
 
 Vec3 operator*(const Vec3& v1, const Vec3& v2) {
-    return {v1.x * v2.x, v1.y - v2.y, v1.z - v2.z};
+    return {v1.x * v2.x, v1.y * v2.y, v1.z * v2.z};
 }
 
 Vec3 operator/(const Vec3& v1, const Vec3& v2) {
@@ -140,9 +147,9 @@ Vec3 worldToLocal(const Vec3& v, const Vec3& s, const Vec3& t, const Vec3& n) {
 }
 
 Vec3 localToWorld(const Vec3& v, const Vec3& s, const Vec3& t, const Vec3& n) {
-    Vec3 a = Vec3(s.x, n.x, t.x);
-    Vec3 b = Vec3(s.y, n.y, t.y);
-    Vec3 c = Vec3(s.z, n.z, t.z);
+    Vec3 a = Vec3(s.x, t.x, n.x);
+    Vec3 b = Vec3(s.y, t.y, n.y);
+    Vec3 c = Vec3(s.z, t.z, n.z);
     return {dot(v, a), dot(v, b), dot(v, c)};
 }
 

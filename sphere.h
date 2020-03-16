@@ -18,11 +18,11 @@ class Sphere {
 public:
     Vec3 center;
     double radius;
-    std::shared_ptr<Material> material;
-    std::shared_ptr<Light> light;
+    std::shared_ptr<Material> material{};
+    std::shared_ptr<Light> light{};
 
-    Sphere(const Vec3& _center, double _radius, std::shared_ptr<Material>  _material) :
-    center(_center), radius(_radius), material(std::move(_material)) {}
+    Sphere(const Vec3& _center, double _radius, std::shared_ptr<Material>  _material, std::shared_ptr<Light> _light) :
+    center(_center), radius(_radius), material(std::move(_material)), light(std::move(_light)) {}
 
     bool intersect(const Ray& ray, Hit& res) const {
         double b = dot(ray.direction, ray.origin - center);
