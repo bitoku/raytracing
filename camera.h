@@ -36,7 +36,7 @@ public:
 
     Ray getRay(double u, double v) const override {
         Vec3 sensorPos = camPos + u * camRight + v * camUp;
-        Vec3 pinholePos = camForward * pinholeDist;
+        Vec3 pinholePos = camPos + camForward * pinholeDist;
         return {sensorPos, normalize(pinholePos - sensorPos)};
     };
 };
