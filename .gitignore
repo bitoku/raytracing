@@ -1,2 +1,4 @@
 # Project exclude paths
 /cmake-build-debug/
+hdr
+stb_image.h

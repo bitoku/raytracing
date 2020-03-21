@@ -40,4 +40,33 @@ public:
         return {sensorPos, normalize(pinholePos - sensorPos)};
     };
 };
+
+class ThinLensCamera : public Camera {
+public:
+    double a;
+    double b;
+    double f;
+    double lensRadius;
+    Vec3 lensCenter;
+
+    ThinLensCamera(const Vec3 &camPos, const Vec3 &camForward, const Vec3& focusPoint, double _a, double _lensRadius) :
+    Camera(camPos, camForward), a(_a), lensRadius(_lensRadius) {
+        double cos = dot(camForward, normalize(focusPoint - camPos));
+        b = cos * (focusPoint - camPos).length() - a;
+        f = 1 / (1/a + 1/b);
+        lensCenter = camPos + camForward * a;
+    }
+
+    Ray getRay(double u, double v) const override {
+        Vec3 sensorPos = camPos + u * camRight + v * camUp;
+        Vec3 r = normalize(lensCenter - sensorPos);
+        Vec3 focusPoint = sensorPos + (a + b) / dot(camForward, r) * r;
+
+        double x, y;
+        sampleDisk(x, y);
+        Vec3 lensPos = lensRadius * (x * camRight + v * camUp) + lensCenter;
+
+        return {lensPos, normalize(focusPoint - lensPos)};
+    }
+};
 #endif //RAYTRACING_CAMERA_H

@@ -10,7 +10,7 @@
 #include "camera.h"
 
 const int MAX_DEPTH = 500;
-const double ROULETTE = 0.9;
+const double ROULETTE = 0.99;
 Vec3 radiance(const Ray& init_ray, const Aggregate& aggregate, const Sky& sky) {
     Vec3 col;
     Vec3 throughput(1);
@@ -53,7 +53,7 @@ int main() {
     const int N = 1000;
 
     Image img(512, 512);
-    PinholeCamera cam(Vec3(0, 0, 2), Vec3(0, 0, -1), 1);
+    ThinLensCamera cam(Vec3(0, 0, 1), Vec3(0, 0, -1), Vec3(0, 0, -3), 1, 0.1);
 
     auto mat1 = std::make_shared<Diffuse>(Vec3(0.9));
     auto matb = std::make_shared<Diffuse>(Vec3(0.2, 0.2, 0.8));
