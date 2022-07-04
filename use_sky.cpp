@@ -56,7 +56,7 @@ int main() {
     PinholeCamera cam(Vec3(0, 0, 2), Vec3(0, 0, -1), 1);
 
     auto mat1 = std::make_shared<Diffuse>(Vec3(0.9));
-    auto matb = std::make_shared<Diffuse>(Vec3(0.2, 0.2, 0.8));
+    auto matb = std::make_shared<Diffuse>(Vec3(1));
     auto matg = std::make_shared<Diffuse>(Vec3(0.2, 0.8, 0.2));
     auto matr = std::make_shared<Diffuse>(Vec3(0.8, 0.2, 0.2));
 
@@ -68,7 +68,7 @@ int main() {
     aggregate.add(std::make_shared<Sphere>(Vec3(3, 0, -3), 1, matr, light1));
     aggregate.add(std::make_shared<Sphere>(Vec3(-3, 0, -3), 1, matg, light1));
 
-    IBL sky("../hdr/PaperMill_E_3k.hdr");
+    IBL sky("../hdr/satara_night_4k.hdr");
 
 //#pragma omp parallel for default(none) shared(img, aggregate, cam, std::cout, sky) schedule(dynamic, 1)
     for (int i = 0; i < img.width; i++) {
@@ -93,7 +93,7 @@ int main() {
 
     img.divide(N);
     img.gamma_correction();
-    img.ppm_output("ibl.ppm");
+    img.ppm_output("ibl_sky.ppm");
 
     return 0;
 }
