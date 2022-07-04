@@ -13,8 +13,8 @@ Make project.
 
 Run `path_tracing`, `thinlens` or `sky`.
 
-![](img/path_tracing.ppm)
+![](img/path_tracing.png)
 
-![](img/ibl_sky.ppm)
+![](img/ibl_sky.png)
 
 **I'm not an author of this book.**
