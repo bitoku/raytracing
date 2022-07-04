@@ -7,14 +7,14 @@ https://booth.pm/en/items/1159865
 
 Download `stb_image.h`.
 
-Download hdr file (currently using https://polyhaven.com/a/satara_night).
+Download hdr file (currently using https://polyhaven.com/a/pretville_cinema).
 
 Make project.
 
-Run `path_tracing`, `thinlens` or `sky`.
+Run `path_tracing` or `thinlens`.
 
 ![](img/path_tracing.png)
 
-![](img/ibl_sky.png)
+![](img/ibl_thinlens.png)
 
 **I'm not an author of this book.**
